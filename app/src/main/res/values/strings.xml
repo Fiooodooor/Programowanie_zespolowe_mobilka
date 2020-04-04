@@ -9,4 +9,6 @@
     <string name="invalid_username">Nieprawidłowa nazwa</string>
     <string name="invalid_password">Hasło musi mieć >5 znaków</string>
     <string name="login_failed">"Logowanie nieudane"</string>
+    <!-- Strings related to rest api -->
+    <string name="rest_err_result_empty">"Error logging in! Result data string was empty."</string>
 </resources>

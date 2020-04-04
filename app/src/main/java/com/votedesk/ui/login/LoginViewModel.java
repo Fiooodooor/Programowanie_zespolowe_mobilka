@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import android.os.AsyncTask;
-import android.util.Patterns;
 
-import com.votedesk.data.LoginDataAsynchEndpoint;
 import com.votedesk.data.LoginRepository;
 import com.votedesk.data.Result;
 import com.votedesk.data.model.LoggedInUser;
@@ -78,7 +76,6 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-
     public void loginDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {
             loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
@@ -88,7 +85,6 @@ public class LoginViewModel extends ViewModel {
             loginFormState.setValue(new LoginFormState(true));
         }
     }
-
     // A placeholder username validation check
     private boolean isUserNameValid(String username) {
         if (username == null) {
@@ -98,7 +94,6 @@ public class LoginViewModel extends ViewModel {
             return !username.trim().isEmpty();
         }
     }
-
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;

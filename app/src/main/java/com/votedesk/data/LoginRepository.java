@@ -10,7 +10,7 @@ public class LoginRepository {
 
     private static volatile LoginRepository instance;
 
-    private LoginDataSource dataSource;
+    private RestApiCall dataSource;
     private boolean loginInProgress;
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
@@ -18,12 +18,12 @@ public class LoginRepository {
     private LoggedInUser user = null;
 
     // private constructor : singleton access
-    private LoginRepository(LoginDataSource dataSource) {
+    private LoginRepository(RestApiCall dataSource) {
         this.dataSource = dataSource;
         this.loginInProgress = false;
     }
 
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static LoginRepository getInstance(RestApiCall dataSource) {
         if (instance == null) {
             instance = new LoginRepository(dataSource);
         }
@@ -42,7 +42,7 @@ public class LoginRepository {
 
     public void logout() {
         user = null;
-        dataSource.logout();
+        //dataSource.logout();
     }
 
     private void setLoggedInUser(LoggedInUser user) {
@@ -53,8 +53,7 @@ public class LoginRepository {
 
     public Result<LoggedInUser> login(String username, String password) {
         loginInProgress = true;
-        // handle login
-        Result<LoggedInUser> result = dataSource.login(username, password);
+        Result<LoggedInUser> result = dataSource.UserLogin(username, password);
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
         }

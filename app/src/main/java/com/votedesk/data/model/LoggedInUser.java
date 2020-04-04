@@ -9,6 +9,7 @@ public class LoggedInUser {
     private String displayName;
     private String tokenId;
 
+    public LoggedInUser() {}
     public LoggedInUser(String userId, String displayName, String tokenId) {
         this.userId = userId;
         this.displayName = displayName;
@@ -18,10 +19,9 @@ public class LoggedInUser {
     public String getUserId() {
         return userId;
     }
-
     public String getDisplayName() {
         return displayName;
     }
-
     public String getTokenId() { return tokenId; }
+    public String getWrappedTokenId() { return "Token " + getTokenId(); }
 }
