@@ -3,4 +3,15 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="activityBackground">#37434F</color>
+    <color name="toolbarBackground">#303B45</color>
+    <color name="btnNormal">#29CFB1</color>
+    <color name="btnText">#000000</color>
+    <color name="editNormal">#F5FAF8</color>
+    <color name="editText">#777777</color>
+    <color name="textView">#EBFAF5</color>
+    <color name="textColor_tile">#29CFB1</color>
+    <color name="textBack_tile">#F2222A31</color>
+    <color name="textColor_projectTile">#E5E5E5</color>
+    <color name="textBack_projectTile">#37434F</color>
 </resources>

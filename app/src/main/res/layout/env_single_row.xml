@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:background="@drawable/custom_tile"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/envIcon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/env_single_icon"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        />
+
+    <TextView
+        android:id="@+id/envName"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:text="@string/env_single_name"
+        android:textSize="16sp"
+        android:textColor="@color/textColor_tile"
+        android:background="@color/textBack_tile"/>
+
+    <TextView
+        android:id="@+id/envDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/env_single_description"
+        android:gravity="center"
+        android:layout_marginTop="110dp"
+        android:textSize="12sp"
+        android:textColor="@color/textColor_tile"
+        android:background="@color/textBack_tile"/>
+
+
+</RelativeLayout>

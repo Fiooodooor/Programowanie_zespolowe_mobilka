@@ -131,10 +131,12 @@ public class AsynchEndpointComm {
             if(!GetToken().isEmpty()) {
                 connection.setRequestProperty("Authorization", GetToken());
             }
-            connection.setDoOutput(true);
             try {
-                byte[] input = payload.toString().getBytes("utf-8");
-                connection.getOutputStream().write(input, 0, input.length);
+                if(this.payload != null) {
+                    connection.setDoOutput(true);
+                    byte[] input = payload.toString().getBytes("utf-8");
+                    connection.getOutputStream().write(input, 0, input.length);
+                }
 
                 SetResponceCode(connection.getResponseCode());
                 if(GetResponceCode() != 200)

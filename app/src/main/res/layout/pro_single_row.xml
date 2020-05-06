@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="100dp"
+    android:padding="3dp"
+    android:id="@+id/ProjectListSingleRowResourceId"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/proIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/pro_single_icon"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"  />
+
+    <TextView
+        android:id="@+id/proName"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/pro_single_name"
+        android:textSize="16sp"
+        android:textColor="@color/textColor_projectTile"
+        android:maxLines="1"
+        android:background="@color/textBack_projectTile"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/proIcon"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp" />
+
+
+    <TextView
+        android:id="@+id/proDesc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pro_single_description"
+        android:textSize="12sp"
+        android:textColor="@color/textColor_projectTile"
+        android:background="@color/textBack_projectTile"
+        android:layout_below="@id/proName"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/proIcon"
+        android:paddingTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        />
+</RelativeLayout>
