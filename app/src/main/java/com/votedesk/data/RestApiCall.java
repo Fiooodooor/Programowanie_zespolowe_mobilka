@@ -30,7 +30,7 @@ public class RestApiCall {
 
     final public class ProjectDetailsApi extends AsynchEndpointComm {
         ProjectDetailsApi(String projectId) {
-            super("/projects/" + projectId, requestMethods.GET);
+            super("projects/" + projectId, requestMethods.GET);
         }
         final protected void CreatePayloadJsonObject() { }
 

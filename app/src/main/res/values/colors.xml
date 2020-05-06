@@ -14,4 +14,6 @@
     <color name="textBack_tile">#F2222A31</color>
     <color name="textColor_projectTile">#E5E5E5</color>
     <color name="textBack_projectTile">#37434F</color>
+    <color name="descTextVotesTextCaption">#8D9399</color>
+    <color name="descVotesText">#29CFB1</color>
 </resources>

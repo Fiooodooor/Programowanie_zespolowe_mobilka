@@ -10,11 +10,7 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.votedesk.R;
@@ -46,7 +42,7 @@ public class EnvironmentsList extends Fragment {
         }
 
         final ProgressBar localPBar = view.findViewById(R.id.envProgressbarLoading);
-        final GridView envView = (GridView) view.findViewById(R.id.gridViewEnv);
+        final GridView envView = view.findViewById(R.id.gridViewEnv);
         localPBar.setVisibility(View.VISIBLE);
         envList = new ArrayList<>();
         /*envList.observe(this, new Observer<ArrayList<SingleEnvironment>>() {

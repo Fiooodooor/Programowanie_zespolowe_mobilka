@@ -3,11 +3,10 @@ package com.votedesk.data.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SingleProject implements Serializable {
+public class SingleProject {
     private Integer Id;
     private String  Name;
     private Integer Owner;
@@ -30,9 +29,9 @@ public class SingleProject implements Serializable {
         setVotes(0);
         setMark(0);
         if(sExtend) {
-            setStatus(sProject.getString("project_status"));
-            setCategory(sProject.getString("project_category"));
-            setContent(sProject.getString("project_content"));
+            setStatus(sProject.optString("project_status", "DataError"));
+            setCategory(sProject.optString("project_category", "DataError"));
+            setContent(sProject.optString("project_content", "DataError"));
             setComments("some comments");
         }
     }
@@ -129,6 +128,7 @@ public class SingleProject implements Serializable {
      * The Owner
      */
     public Integer getOwner() { return Owner; }
+    public String getOwnerStr() { return (" " + Owner); }
     /**
      *
      * @return
@@ -141,6 +141,7 @@ public class SingleProject implements Serializable {
      * The Votes
      */
     public Integer getVotes() { return Votes; }
+    public String getVotesStr() { return (" " + Votes + "%"); }
     /**
      *
      * @return

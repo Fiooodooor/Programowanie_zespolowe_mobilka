@@ -16,24 +16,28 @@
     <string name="env_title">1. Wybierz środowisko:</string>
     <string name="pro_title">2. Wybierz projekt:</string>
     <string name="desc_title">3. Informacje o projekcie:</string>
-    <string name="env_single_icon">Icon not loaded...</string>
-    <string name="env_single_name">Wczytywanie...</string>
-    <string name="env_single_description">Opis niedostępny...</string>
+    <string name="env_single_icon">Icon not loaded.</string>
+    <string name="env_single_name">Wczytywanie.</string>
+    <string name="env_single_description">Opis niedostępny.</string>
 
     <string name="rest_err_result_empty">"Error logging in! Result data string was empty."</string>
     <string name="title_activity_projects">ProjectsActivity</string>
 
-    <string name="pro_single_icon">Icon not loaded...</string>
-    <string name="pro_single_name">Wczytywanie...</string>
-    <string name="pro_single_description">Opis niedostępny...</string>
+    <string name="pro_single_icon">Icon not loaded.</string>
+    <string name="pro_single_name">Wczytywanie.</string>
+    <string name="pro_single_description">Opis niedostępny.</string>
     <string name="next">Next</string>
 
 
     <string name="descBackCaption">POWRÓT </string>
-    <string name="descEnviornmentCaption">Środowisko: </string>
+    <string name="descEnvironmentImage">Project graphic cover. Not loaded. </string>
+    <string name="descEnvironmentCaption">Środowisko: </string>
     <string name="descProjectCaption">Projekt: </string>
     <string name="descOwnerCaption">Właściciel: </string>
     <string name="descProjectInfoCaption">Informacje o projekcie: </string>
+    <string name="descProjectInfoEdit">Dane w trakcie wczytywania. </string>
+    <string name="descVotesText"> 20% </string>
+    <string name="descVotesTextCaption">Wynik: </string>
     <string name="descVotesCaption">Głosy: </string>
     <string name="descVoteButtonCaption">GŁOSUJ</string>
 

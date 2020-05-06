@@ -20,7 +20,7 @@ public class SingleEnvironment {
         setId(EnvSingle.getInt("id"));
         setOwner(EnvSingle.getInt("id"));
         setName(EnvSingle.getString("environment_name"));
-        setCoverUri(EnvSingle.optString("cover", "@mipmap/ic_launcher"));
+        setCoverUri(EnvSingle.optString("cover", ""));
         setProjectList(new ArrayList<SingleProject>());
         JSONArray projectList = EnvSingle.getJSONArray("projects");
         for(int i=0; i<projectList.length(); i++) {

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -50,8 +51,9 @@ public class EnvListViewAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.env_single_row, parent, false);
-        TextView textEnvView = (TextView) rowView.findViewById(R.id.envName);
-        TextView textDescView = (TextView) rowView.findViewById(R.id.envDesc);
+        TextView textEnvView = (TextView) rowView.findViewById(R.id.envSingleRowName);
+        TextView textDescView = (TextView) rowView.findViewById(R.id.envSingleRowDesc);
+        ImageView bgEnvIcon = (ImageView) rowView.findViewById(R.id.envSingleRowIcon);
 
         textEnvView.setText(mEnvList.get(position).getName());
         textDescView.setText("the id is: " + mEnvList.get(position).getId());

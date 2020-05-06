@@ -54,7 +54,7 @@ public class ProjectsList extends Fragment {
                 result.putInt("mEnvNumber", envNumber);
                 result.putInt("mProjectNumber", position);
                 NavHostFragment.findNavController(ProjectsList.this)
-                        .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+                        .navigate(R.id.action_SecondFragment_to_ThirdFragment, result);
             }
         });
     }

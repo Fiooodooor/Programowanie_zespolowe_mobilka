@@ -1,84 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<TableLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
     android:orientation="vertical"
     android:padding="10dp"
-    android:stretchColumns="1"
-    >
+    android:stretchColumns="1">
 
     <TableRow >
+        <ImageView
+            android:id="@+id/descEnvironmentImage"
+            android:contentDescription="@string/descEnvironmentImage"
+            android:src="@drawable/ic_empty_env_tile"
+            android:scaleType="fitXY"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_span="3"
+            android:padding="4dp" />
+    </TableRow>
+    <TableRow >
         <TextView
-            android:text="@string/descEnviornmentCaption"
+            android:text="@string/descEnvironmentCaption"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:padding="4dp" />
         <TextView
-
+            android:id="@+id/descEnvironmentCaption"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
+            android:layout_span="2"
             android:padding="4dp"/>
     </TableRow>
     <TableRow>
         <TextView
             android:text="@string/descProjectCaption"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:padding="4dp"/>
         <TextView
+            android:id="@+id/descProjectCaption"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
+            android:layout_span="2"
             android:padding="4dp"/>
     </TableRow>
-    <TableRow >
+
+    <TableRow>
+
         <TextView
-            android:text="@string/descOwnerCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:padding="4dp"/>
-        <TextView
+            android:padding="4dp"
+            android:text="@string/descOwnerCaption"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/descOwnerCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:padding="4dp"/>
+            android:layout_span="2"
+            android:padding="4dp"
+            android:textSize="15sp" />
     </TableRow>
     <TableRow>
         <TextView
             android:text="@string/descProjectInfoCaption"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:textSize="15sp"
+            android:textStyle="bold"
             android:layout_column="0"
-            android:padding="4dp"/>
+            android:paddingStart="4dp"
+            android:paddingTop="8dp" />
         <TextView
-
+            android:text="@string/descVotesTextCaption"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/descTextVotesTextCaption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_column="1"
+            android:padding="4dp"/>
+        <TextView
+            android:id="@+id/descVotesValueText"
+            android:text="@string/descVotesText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/descVotesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
             android:padding="4dp"/>
     </TableRow>
     <TableRow >
         <EditText
+            android:id="@+id/descProjectInfoCaption"
+            android:textSize="15sp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-
-            android:text="@string/descVoteButtonCaption"
+            android:text="@string/descProjectInfoEdit"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:layout_span="2"
-            android:padding="4dp"/>
+            android:layout_span="3"
+            android:padding="4dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" >
+        </EditText>
     </TableRow>
     <TableRow >
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/descVoteButtonCaption"
-            android:layout_span="2"
+            android:layout_span="3"
             android:padding="4dp"/>
     </TableRow>
     <TableRow >
@@ -86,8 +145,22 @@
             android:id="@+id/descVoteButtonId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_span="2"
+            android:layout_span="3"
             android:text="@string/descVoteButtonCaption"
             />
     </TableRow>
 </TableLayout>
+
+<ProgressBar
+    android:id="@+id/descProgressBarLoading"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintVertical_bias="0.4"
+    app:layout_constraintHorizontal_bias="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>
