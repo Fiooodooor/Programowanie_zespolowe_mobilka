@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -23,8 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.votedesk.R;
-import com.votedesk.ui.login.LoginViewModel;
-import com.votedesk.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,6 +70,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                     setResult(Activity.RESULT_OK);
+
+                    //Intent changeActivityIntent = new Intent(LoginActivity.this, Environments.class);
+                    Intent changeActivityIntent = new Intent(LoginActivity.this, MainCoordinatorActivity.class);
+                    startActivity(changeActivityIntent);
                     finish();
                 }
                 //Complete and destroy login activity once successful

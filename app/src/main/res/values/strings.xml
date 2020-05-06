@@ -1,14 +1,44 @@
 <resources>
     <string name="app_name">VoteDesk</string>
     <!-- Strings related to login -->
+    <string name="umk_text">Uniwersytet Mikołaja Kopernika w Toruniu</string>
+    <string name="prompt_email_text">Nazwa użytkownika:</string>
     <string name="prompt_email">Nazwa użytkownika</string>
+    <string name="prompt_password_text">Hasło:</string>
     <string name="prompt_password">Hasło</string>
     <string name="action_sign_in">Zaloguj się</string>
     <string name="action_sign_in_short">Zaloguj</string>
-    <string name="welcome">"Witam !"</string>
+    <string name="welcome">Zalogowano jako </string>
     <string name="invalid_username">Nieprawidłowa nazwa</string>
-    <string name="invalid_password">Hasło musi mieć >5 znaków</string>
-    <string name="login_failed">"Logowanie nieudane"</string>
-    <!-- Strings related to rest api -->
+    <string name="invalid_password">Hasło musi mieć  min. 5 znaków</string>
+    <string name="login_failed">Logowanie nieudane</string>
+    <string name="env_get_failed">Pobieranie listy środowisk nieudane</string>
+    <string name="env_title">1. Wybierz środowisko:</string>
+    <string name="pro_title">2. Wybierz projekt:</string>
+    <string name="desc_title">3. Informacje o projekcie:</string>
+    <string name="env_single_icon">Icon not loaded...</string>
+    <string name="env_single_name">Wczytywanie...</string>
+    <string name="env_single_description">Opis niedostępny...</string>
+
     <string name="rest_err_result_empty">"Error logging in! Result data string was empty."</string>
+    <string name="title_activity_projects">ProjectsActivity</string>
+
+    <string name="pro_single_icon">Icon not loaded...</string>
+    <string name="pro_single_name">Wczytywanie...</string>
+    <string name="pro_single_description">Opis niedostępny...</string>
+    <string name="next">Next</string>
+
+
+    <string name="descBackCaption">POWRÓT </string>
+    <string name="descEnviornmentCaption">Środowisko: </string>
+    <string name="descProjectCaption">Projekt: </string>
+    <string name="descOwnerCaption">Właściciel: </string>
+    <string name="descProjectInfoCaption">Informacje o projekcie: </string>
+    <string name="descVotesCaption">Głosy: </string>
+    <string name="descVoteButtonCaption">GŁOSUJ</string>
+
+    <string name="error_project_list">Error! Return string for project list was empty.</string>
+    <string name="error_project_list_e">Error! IOException while getting project list.</string>
+    <string name="error_project_details">Error! Return string for project details was empty.</string>
+    <string name="error_project_details_e">Error! IOException while getting project details.</string>
 </resources>
