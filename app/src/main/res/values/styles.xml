@@ -53,6 +53,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.AppSeekBar" parent="Widget.AppCompat.SeekBar.Discrete">
+        <item name="android:progressBackgroundTint">#DBDBDB</item>
+        <item name="android:progressTint">#24C7A9</item>
+        <item name="android:colorControlActivated">#24C7A9</item>
+        <item name="android:colorControlNormal">#24C7A9</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="AppTheme" />
 

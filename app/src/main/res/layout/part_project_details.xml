@@ -134,10 +134,16 @@
     </TableRow>
     <TableRow >
         <SeekBar
+            android:id="@+id/descProjectSeekBar"
+            style="@style/AppTheme.AppSeekBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:max="10"
+            android:progress="5"
+            android:layout_marginTop="20dp"
             android:text="@string/descVoteButtonCaption"
             android:layout_span="3"
+            android:thumb="@drawable/ic_selector"
             android:padding="4dp"/>
     </TableRow>
     <TableRow >
@@ -145,6 +151,9 @@
             android:id="@+id/descVoteButtonId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
             android:layout_span="3"
             android:text="@string/descVoteButtonCaption"
             />

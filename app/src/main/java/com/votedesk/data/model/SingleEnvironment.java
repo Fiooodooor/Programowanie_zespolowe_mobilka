@@ -12,15 +12,15 @@ import java.util.ArrayList;
 public class SingleEnvironment {
     private Integer Id;
     private String Name;
-    private Integer Owner;
+    private UserOwner Owner;
     private String CoverUri;
     private ArrayList<SingleProject> ProjectList;
 
     public SingleEnvironment(JSONObject EnvSingle) throws JSONException {
         setId(EnvSingle.getInt("id"));
-        setOwner(EnvSingle.getInt("id"));
+        setOwner(new UserOwner(EnvSingle.getJSONObject("owner")));
         setName(EnvSingle.getString("environment_name"));
-        setCoverUri(EnvSingle.optString("cover", ""));
+        setCoverUri(EnvSingle.optString("cover_image", "@mipmap/ic_launcher"));
         setProjectList(new ArrayList<SingleProject>());
         JSONArray projectList = EnvSingle.getJSONArray("projects");
         for(int i=0; i<projectList.length(); i++) {
@@ -30,9 +30,8 @@ public class SingleEnvironment {
                 ProjectList.add(projNode);
             }
         }
-
     }
-    public SingleEnvironment(Integer Id, String Name, Integer Owner, String CoverUri, ArrayList<SingleProject> ProjectList) {
+    public SingleEnvironment(Integer Id, String Name, UserOwner Owner, String CoverUri, ArrayList<SingleProject> ProjectList) {
         this.Id = Id;
         this.Name = Name;
         this.Owner = Owner;
@@ -46,7 +45,7 @@ public class SingleEnvironment {
     public void setName(String name) {
         Name = name;
     }
-    public void setOwner(Integer owner) {
+    public void setOwner(UserOwner owner) {
         Owner = owner;
     }
     public void setCoverUri(String coverUri) {
@@ -64,7 +63,7 @@ public class SingleEnvironment {
         return Name;
     }
 
-    public Integer getOwner() {
+    public UserOwner getOwner() {
         return Owner;
     }
 

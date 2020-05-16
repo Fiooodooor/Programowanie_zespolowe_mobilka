@@ -9,7 +9,7 @@ import java.util.List;
 public class SingleProject {
     private Integer Id;
     private String  Name;
-    private Integer Owner;
+    private UserOwner Owner;
     private String  CoverUri;
     private String  Status;
     private String  Category;
@@ -23,15 +23,20 @@ public class SingleProject {
     }
     public SingleProject(JSONObject sProject, boolean sExtend)  throws JSONException {
         setId(sProject.getInt("id"));
-        setOwner(sProject.getInt("owner"));
+        JSONObject owner = sProject.optJSONObject("owner");
+        if(owner == null) {
+            setOwner(new UserOwner(sProject.getInt("owner")));
+        } else {
+            setOwner(new UserOwner(owner));
+        }
         setName(sProject.getString("project_name"));
-        setCoverUri(sProject.optString("cover", "@mipmap/ic_launcher"));
+        setContent(sProject.optString("project_content", "DataError"));
+        setCoverUri(sProject.optString("cover_image", "@mipmap/ic_launcher"));
         setVotes(0);
         setMark(0);
         if(sExtend) {
             setStatus(sProject.optString("project_status", "DataError"));
             setCategory(sProject.optString("project_category", "DataError"));
-            setContent(sProject.optString("project_content", "DataError"));
             setComments("some comments");
         }
     }
@@ -61,7 +66,7 @@ public class SingleProject {
      * @param Owner
      * The owner
      */
-    public void setOwner(Integer Owner) { this.Owner = Owner;    }
+    public void setOwner(UserOwner Owner) { this.Owner = Owner;    }
     /**
      *
      * @param CoverUri
@@ -127,8 +132,8 @@ public class SingleProject {
      * @return
      * The Owner
      */
-    public Integer getOwner() { return Owner; }
-    public String getOwnerStr() { return (" " + Owner); }
+    public UserOwner getOwner() { return Owner; }
+    public String getOwnerStr() { return (Owner.getUserName()); }
     /**
      *
      * @return

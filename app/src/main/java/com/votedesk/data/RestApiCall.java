@@ -23,7 +23,7 @@ public class RestApiCall {
         ListEnvironmentsApi restApi = new ListEnvironmentsApi();
         return restApi.Start();
     }
-    public Result<SingleProject> ProjectDetails(String projectId) {
+       public Result<SingleProject> ProjectDetails(String projectId) {
         ProjectDetailsApi restApi = new ProjectDetailsApi(projectId);
         return restApi.Start();
     }

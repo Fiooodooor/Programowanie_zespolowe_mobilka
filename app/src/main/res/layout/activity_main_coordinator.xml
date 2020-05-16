@@ -35,6 +35,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/CoordToolbar"
             android:layout_width="match_parent"
+            app:titleTextColor="@android:color/white"
             android:layout_height="?attr/actionBarSize" />
 
 
