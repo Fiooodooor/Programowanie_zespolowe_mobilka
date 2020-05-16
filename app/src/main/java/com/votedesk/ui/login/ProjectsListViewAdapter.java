@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.votedesk.R;
+import com.votedesk.data.AsynchDownloadImage;
 import com.votedesk.data.model.SingleProject;
 
 import java.util.ArrayList;
@@ -56,9 +58,14 @@ public class ProjectsListViewAdapter extends BaseAdapter {
         View rowProjView = inflater.inflate(R.layout.pro_single_row, parent, false);
         TextView textProView = (TextView) rowProjView.findViewById(R.id.proName);
         TextView textDescView = (TextView) rowProjView.findViewById(R.id.proDesc);
+        ImageView imageProView = (ImageView) rowProjView.findViewById(R.id.proIcon);
 
         textProView.setText(mProjectList.get(position).getName());
         textDescView.setText("the id is: " + mProjectList.get(position).getId());
+
+        if (!mProjectList.get(position).getCoverUri().isEmpty()) {
+            new AsynchDownloadImage(imageProView).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");
+        }
 
         return rowProjView;
     }

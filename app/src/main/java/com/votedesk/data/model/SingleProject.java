@@ -17,6 +17,8 @@ public class SingleProject {
     private String Comments;
     private Integer Votes;
     private Integer Mark;
+    private Integer Environment;
+    private String Environment_name;
 
     public SingleProject(JSONObject sProject)  throws JSONException {
         this(sProject, false);
@@ -35,20 +37,52 @@ public class SingleProject {
         setVotes(0);
         setMark(0);
         if(sExtend) {
+            setEnvironment(sProject.optInt("environment", 0));
+            setEnvironment_name(sProject.optString("environment_name", "no name"));
             setStatus(sProject.optString("project_status", "DataError"));
             setCategory(sProject.optString("project_category", "DataError"));
             setComments("some comments");
         }
+        else {
+            setEnvironment(0);
+            setEnvironment_name("not loaded");
+            setStatus("not loaded");
+            setCategory("not loaded");
+            setComments("not loaded");
+        }
     }
 
     SingleProject(SingleProject cp) {
-        this.Id       = cp.Id;
-        this.Name     = cp.Name;
-        this.Owner    = cp.Owner;
-        this.CoverUri = cp.CoverUri;
-        this.Votes    = cp.Votes;
-        this.Mark     = cp.Mark;
+        this.setId(cp.getId());
+        this.setName(cp.getName());
+        this.setOwner(cp.getOwner());
+        this.setCoverUri(cp.getCoverUri());
+        this.setStatus(cp.getStatus());
+        this.setCategory(cp.getCategory());
+        this.setContent(cp.getContent());
+        this.setComments(cp.getComments());
+        this.setVotes(cp.getVotes());
+        this.setMark(cp.getMark());
+        this.setEnvironment(cp.getEnvironment());
+        this.setEnvironment_name(cp.getEnvironment_name());
     }
+
+    public Integer getEnvironment() {
+        return Environment;
+    }
+
+    public void setEnvironment(Integer environment) {
+        Environment = environment;
+    }
+
+    public String getEnvironment_name() {
+        return Environment_name;
+    }
+
+    public void setEnvironment_name(String environment_name) {
+        Environment_name = environment_name;
+    }
+
     /**
      *
      * @param Id

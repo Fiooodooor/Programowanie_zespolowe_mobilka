@@ -10,6 +10,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.votedesk.R;
+import com.votedesk.data.AsynchDownloadImage;
 import com.votedesk.data.model.SingleEnvironment;
 
 import java.util.ArrayList;
@@ -58,6 +59,9 @@ public class EnvListViewAdapter extends BaseAdapter {
         textEnvView.setText(mEnvList.get(position).getName());
         textDescView.setText("the id is: " + mEnvList.get(position).getId());
 
+        if (!mEnvList.get(position).getCoverUri().isEmpty()) {
+            new AsynchDownloadImage(bgEnvIcon).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");
+        }
         return rowView;
     }
 }

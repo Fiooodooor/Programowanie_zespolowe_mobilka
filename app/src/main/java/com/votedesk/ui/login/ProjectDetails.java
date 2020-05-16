@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.votedesk.R;
+import com.votedesk.data.AsynchDownloadImage;
 import com.votedesk.data.RestApiCall;
 import com.votedesk.data.Result;
 import com.votedesk.data.model.SingleProject;
@@ -25,12 +26,12 @@ public class ProjectDetails extends Fragment {
     private String descParentEnvName;
     private SingleProject nodeProject;
 
-    private static ImageView descEnvironmentImage;
-    private static TextView descEnvironmentName;
-    private static TextView descProjectName;
-    private static TextView descOwnerName;
-    private static TextView descVotesValue;
-    private static TextView descProjectDescription;
+    private ImageView descEnvironmentImage;
+    private TextView descEnvironmentName;
+    private TextView descProjectName;
+    private TextView descOwnerName;
+    private TextView descVotesValue;
+    private TextView descProjectDescription;
 
     @Override
     public View onCreateView(
@@ -78,7 +79,9 @@ public class ProjectDetails extends Fragment {
     }
 
     public void onDetailsDataLoaded() {
-        //descEnvironmentImage;
+        if (!nodeProject.getCoverUri().isEmpty()) {
+            new AsynchDownloadImage(descEnvironmentImage).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");
+        }
         descEnvironmentName.setText(descParentEnvName);
         descProjectName.setText(nodeProject.getName());
         descOwnerName.setText(nodeProject.getOwnerStr());;
