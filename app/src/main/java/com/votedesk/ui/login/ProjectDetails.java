@@ -69,13 +69,13 @@ public class ProjectDetails extends Fragment {
         AsyncTask<Void, Void, String> aProjectDet = new ProjectDetails.DetailsNetworkOperation("" + mProjectId, localPBar);
         aProjectDet.execute();
 
-        view.findViewById(R.id.descVoteButtonId).setOnClickListener(new View.OnClickListener() {
+       /* view.findViewById(R.id.descVoteButtonId).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(ProjectDetails.this)
                         .navigate(R.id.action_BackToProjectsList);
             }
-        });
+        });*/
     }
 
     public void onDetailsDataLoaded() {

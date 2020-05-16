@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -66,11 +67,16 @@ public class EnvironmentsList extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Bundle result = new Bundle();
-                result.putInt("envNumber", position);
-                NavHostFragment.findNavController(EnvironmentsList.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment, result);
-
+                if(!envList.get(position).getProjectList().isEmpty()) {
+                    Bundle result = new Bundle();
+                    result.putInt("envNumber", position);
+                    NavHostFragment.findNavController(EnvironmentsList.this)
+                            .navigate(R.id.action_FirstFragment_to_SecondFragment, result);
+                }
+                else {
+                    String emptyEnv = getString(R.string.env_no_projects);
+                    Toast.makeText(getActivity(), emptyEnv, Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

@@ -13,6 +13,7 @@
     <string name="invalid_password">Hasło musi mieć  min. 5 znaków</string>
     <string name="login_failed">Logowanie nieudane</string>
     <string name="env_get_failed">Pobieranie listy środowisk nieudane</string>
+    <string name="env_no_projects">Lista projektów jest pusta.</string>
     <string name="env_title">1. Wybierz środowisko:</string>
     <string name="pro_title">2. Wybierz projekt:</string>
     <string name="desc_title">3. Informacje o projekcie:</string>
