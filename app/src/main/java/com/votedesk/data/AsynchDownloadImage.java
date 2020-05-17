@@ -6,10 +6,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
+
 import java.io.InputStream;
 
 public class AsynchDownloadImage extends AsyncTask<String, Void, Bitmap> {
-    ImageView targetView;
+    private ImageView targetView;
 
     public AsynchDownloadImage(ImageView targetImageView) {
         this.targetView = targetImageView;
@@ -29,6 +30,7 @@ public class AsynchDownloadImage extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
+
         targetView.setImageBitmap(result);
     }
 }

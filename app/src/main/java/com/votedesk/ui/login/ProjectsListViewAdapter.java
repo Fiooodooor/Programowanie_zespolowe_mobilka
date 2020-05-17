@@ -61,7 +61,7 @@ public class ProjectsListViewAdapter extends BaseAdapter {
         ImageView imageProView = (ImageView) rowProjView.findViewById(R.id.proIcon);
 
         textProView.setText(mProjectList.get(position).getName());
-        textDescView.setText("the id is: " + mProjectList.get(position).getId());
+        textDescView.setText(mProjectList.get(position).getContent());
 
         if (!mProjectList.get(position).getCoverUri().isEmpty()) {
             new AsynchDownloadImage(imageProView).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");

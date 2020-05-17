@@ -1,9 +1,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="150dp"
     android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/custom_tile"
-    android:gravity="center">
+    android:gravity="center"
+    >
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view2"
+        android:innerRadius="0dp"
+        app:cardCornerRadius="20dp">
     <ImageView
         android:id="@+id/envSingleRowIcon"
         android:layout_width="match_parent"
@@ -12,7 +20,6 @@
         android:src="@drawable/ic_empty_env_tile"
         android:scaleType="centerCrop"
         />
-
     <TextView
         android:id="@+id/envSingleRowName"
         android:layout_width="match_parent"
@@ -35,5 +42,5 @@
         android:textColor="@color/textColor_tile"
         android:background="@color/textBack_tile"/>
 
-
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

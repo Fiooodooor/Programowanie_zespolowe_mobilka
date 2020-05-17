@@ -57,7 +57,7 @@ public class EnvListViewAdapter extends BaseAdapter {
         ImageView bgEnvIcon = (ImageView) rowView.findViewById(R.id.envSingleRowIcon);
 
         textEnvView.setText(mEnvList.get(position).getName());
-        textDescView.setText("the id is: " + mEnvList.get(position).getId());
+        textDescView.setText("projektów: " + mEnvList.get(position).getProjectList().size());
 
         if (!mEnvList.get(position).getCoverUri().isEmpty()) {
             new AsynchDownloadImage(bgEnvIcon).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");
