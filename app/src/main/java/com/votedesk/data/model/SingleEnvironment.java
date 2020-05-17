@@ -49,7 +49,15 @@ public class SingleEnvironment {
         Owner = owner;
     }
     public void setCoverUri(String coverUri) {
-        CoverUri = coverUri;
+        if(coverUri.contains("127.0.0.1:8000")) {
+            CoverUri = coverUri.replace("127.0.0.1:8000", "ec2-3-9-170-154.eu-west-2.compute.amazonaws.com");
+        }
+        else if(coverUri.compareTo("null")==0) {
+            CoverUri = "";
+        }
+        else {
+            CoverUri = coverUri;
+        }
     }
     public void setProjectList(ArrayList<SingleProject> projectList) {
         ProjectList = projectList;

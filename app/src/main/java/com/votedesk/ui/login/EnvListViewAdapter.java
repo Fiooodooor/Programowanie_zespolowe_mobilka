@@ -60,7 +60,7 @@ public class EnvListViewAdapter extends BaseAdapter {
         textDescView.setText("projektów: " + mEnvList.get(position).getProjectList().size());
 
         if (!mEnvList.get(position).getCoverUri().isEmpty()) {
-            new AsynchDownloadImage(bgEnvIcon).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");
+            new AsynchDownloadImage(bgEnvIcon).execute(mEnvList.get(position).getCoverUri());
         }
         return rowView;
     }

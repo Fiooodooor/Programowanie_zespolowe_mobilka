@@ -80,7 +80,7 @@ public class ProjectDetails extends Fragment {
 
     public void onDetailsDataLoaded() {
         if (!nodeProject.getCoverUri().isEmpty()) {
-            new AsynchDownloadImage(descEnvironmentImage).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");
+            new AsynchDownloadImage(descEnvironmentImage).execute(nodeProject.getCoverUri());
         }
         descEnvironmentName.setText(descParentEnvName);
         descProjectName.setText(nodeProject.getName());

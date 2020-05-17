@@ -64,7 +64,7 @@ public class ProjectsListViewAdapter extends BaseAdapter {
         textDescView.setText(mProjectList.get(position).getContent());
 
         if (!mProjectList.get(position).getCoverUri().isEmpty()) {
-            new AsynchDownloadImage(imageProView).execute("http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com/media/environment_covers/temp.jpeg");
+            new AsynchDownloadImage(imageProView).execute(mProjectList.get(position).getCoverUri());
         }
 
         return rowProjView;

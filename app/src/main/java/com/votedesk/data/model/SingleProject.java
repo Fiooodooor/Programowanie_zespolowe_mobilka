@@ -106,7 +106,17 @@ public class SingleProject {
      * @param CoverUri
      * The cover_uri
      */
-    public void setCoverUri(String CoverUri) { this.CoverUri = CoverUri;    }
+    public void setCoverUri(String CoverUri) {
+        if(CoverUri.contains("127.0.0.1:8000")) {
+            this.CoverUri = CoverUri.replace("127.0.0.1:8000", "ec2-3-9-170-154.eu-west-2.compute.amazonaws.com");
+        }
+        else if(CoverUri.compareTo("null")==0) {
+            this.CoverUri = "";
+        }
+        else {
+            this.CoverUri = CoverUri;
+        }
+    }
     /**
      *
      * @param Votes
