@@ -17,8 +17,8 @@ public class MainCoordinatorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_coordinator);
-        Toolbar toolbar = findViewById(R.id.CoordToolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.CoordToolbar);
+        //setSupportActionBar(toolbar);
 
         globalEnvList = new ArrayList<>();
         /*FloatingActionButton fab = findViewById(R.id.fab);

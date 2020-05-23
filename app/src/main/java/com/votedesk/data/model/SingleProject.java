@@ -19,6 +19,7 @@ public class SingleProject {
     private Integer Mark;
     private Integer Environment;
     private String Environment_name;
+    private boolean Can_vote;
 
     public SingleProject(JSONObject sProject)  throws JSONException {
         this(sProject, false);
@@ -33,14 +34,15 @@ public class SingleProject {
         }
         setName(sProject.getString("project_name"));
         setContent(sProject.optString("project_content", "DataError"));
-        setCoverUri(sProject.optString("cover_image", "@mipmap/ic_launcher"));
-        setVotes(0);
+        setCoverUri(sProject.optString("cover_image", ""));
         setMark(0);
         if(sExtend) {
             setEnvironment(sProject.optInt("environment", 0));
             setEnvironment_name(sProject.optString("environment_name", "no name"));
             setStatus(sProject.optString("project_status", "DataError"));
             setCategory(sProject.optString("project_category", "DataError"));
+            setVotes(sProject.optInt("vote_average", 0));
+            setCan_vote(sProject.optBoolean("can_vote", false));
             setComments("some comments");
         }
         else {
@@ -49,6 +51,8 @@ public class SingleProject {
             setStatus("not loaded");
             setCategory("not loaded");
             setComments("not loaded");
+            setCan_vote(false);
+            setVotes(0);
         }
     }
 
@@ -65,6 +69,14 @@ public class SingleProject {
         this.setMark(cp.getMark());
         this.setEnvironment(cp.getEnvironment());
         this.setEnvironment_name(cp.getEnvironment_name());
+    }
+
+    public boolean isCan_vote() {
+        return Can_vote;
+    }
+
+    public void setCan_vote(boolean can_vote) {
+        Can_vote = can_vote;
     }
 
     public Integer getEnvironment() {
@@ -103,18 +115,19 @@ public class SingleProject {
     public void setOwner(UserOwner Owner) { this.Owner = Owner;    }
     /**
      *
-     * @param CoverUri
+     * @param coverUri
      * The cover_uri
      */
-    public void setCoverUri(String CoverUri) {
-        if(CoverUri.contains("127.0.0.1:8000")) {
-            this.CoverUri = CoverUri.replace("127.0.0.1:8000", "ec2-3-9-170-154.eu-west-2.compute.amazonaws.com");
+    public void setCoverUri(String coverUri) {
+        if(coverUri.contains("127.0.0.1:8000")) {
+            CoverUri = coverUri.replace("127.0.0.1:8000", "ec2-3-9-170-154.eu-west-2.compute.amazonaws.com");
         }
-        else if(CoverUri.compareTo("null")==0) {
-            this.CoverUri = "";
+        else if(coverUri.compareTo("null")==0) {
+            CoverUri = "";
         }
         else {
-            this.CoverUri = CoverUri;
+            CoverUri = "http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com";
+            CoverUri += coverUri;
         }
     }
     /**

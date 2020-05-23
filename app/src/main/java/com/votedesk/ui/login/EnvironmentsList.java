@@ -37,10 +37,10 @@ public class EnvironmentsList extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MainCoordinatorActivity mActivity = (MainCoordinatorActivity) getActivity();
-        if(mActivity != null) {
-            mActivity.setTitle(R.string.env_title);
-        }
+   //     MainCoordinatorActivity mActivity = (MainCoordinatorActivity) getActivity();
+     //   if(mActivity != null) {
+  //          mActivity.setTitle(R.string.env_title);
+   //     }
 
         final ProgressBar localPBar = view.findViewById(R.id.envProgressbarLoading);
         final GridView envView = view.findViewById(R.id.gridViewEnv);

@@ -5,13 +5,25 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".ui.login.EnvironmentsList">
-
+    <TextView
+        android:id="@+id/gridViewEnvText"
+        android:text="@string/env_title"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="6dp" />
 <GridView
     android:id="@+id/gridViewEnv"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     tools:ignore="MissingConstraints"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="40dp"
     android:layout_marginStart="6dp"
     android:layout_marginEnd="6dp"
     android:layout_marginBottom="6dp" />

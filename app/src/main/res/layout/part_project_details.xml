@@ -17,6 +17,21 @@
     android:stretchColumns="1">
 
     <TableRow >
+        <Button
+            android:id="@+id/descGoBack"
+            android:text="@string/voteBack"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="#E5E5E5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:background="@color/activityBackground"
+            android:gravity="right|center_vertical"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_span="3"/>
+    </TableRow>
+    <TableRow >
         <ImageView
             android:id="@+id/descEnvironmentImage"
             android:contentDescription="@string/descEnvironmentImage"
@@ -120,7 +135,7 @@
             android:id="@+id/descProjectInfoCaption"
             android:textSize="15sp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:text="@string/descProjectInfoEdit"
             android:gravity="start|top"
             android:inputType="textMultiLine"
@@ -138,6 +153,7 @@
             style="@style/AppTheme.AppSeekBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:max="10"
             android:progress="5"
             android:layout_marginTop="20dp"
@@ -151,6 +167,7 @@
             android:id="@+id/descVoteButtonId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginTop="20dp"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"

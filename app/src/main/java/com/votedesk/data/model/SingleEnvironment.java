@@ -56,7 +56,8 @@ public class SingleEnvironment {
             CoverUri = "";
         }
         else {
-            CoverUri = coverUri;
+            CoverUri = "http://ec2-3-9-170-154.eu-west-2.compute.amazonaws.com";
+            CoverUri += coverUri;
         }
     }
     public void setProjectList(ArrayList<SingleProject> projectList) {

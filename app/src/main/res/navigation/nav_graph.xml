@@ -59,12 +59,54 @@
                 app:argType="integer"
                 android:defaultValue="0" />
         </action>
+        <action
+            android:id="@+id/action_VoteOnProject"
+            app:destination="@id/ForthFragment" >
+            <argument
+                android:name="mEnvNumber"
+                app:argType="integer"
+                android:defaultValue="0" />
+            <argument
+                android:name="mProjectNumber"
+                app:argType="integer"
+                android:defaultValue="0" />
+            <argument
+                android:name="mVoteMark"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
         <argument
             android:name="mEnvNumber"
             app:argType="integer"
             android:defaultValue="0" />
         <argument
             android:name="mProjectNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/ForthFragment"
+        android:name="com.votedesk.ui.login.VoteResult"
+        android:label="part_vote_result"
+        tools:layout="@layout/part_vote_result" >
+        <action
+            android:id="@+id/action_VoteBackToProjectsList"
+            app:destination="@id/SecondFragment" >
+            <argument
+                android:name="envNumber"
+                app:argType="integer"
+                android:defaultValue="0" />
+        </action>
+        <argument
+            android:name="mEnvNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="mProjectNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="mVoteMark"
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>

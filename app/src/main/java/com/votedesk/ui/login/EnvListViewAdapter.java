@@ -56,7 +56,15 @@ public class EnvListViewAdapter extends BaseAdapter {
         TextView textDescView = (TextView) rowView.findViewById(R.id.envSingleRowDesc);
         ImageView bgEnvIcon = (ImageView) rowView.findViewById(R.id.envSingleRowIcon);
 
-        textEnvView.setText(mEnvList.get(position).getName());
+        String singleEnvName;
+        if(mEnvList.get(position).getName().length()>14) {
+            singleEnvName = mEnvList.get(position).getName().substring(0, 14);
+            singleEnvName += "..";
+        }
+        else {
+            singleEnvName = mEnvList.get(position).getName();
+        }
+        textEnvView.setText(singleEnvName);
         textDescView.setText("projektów: " + mEnvList.get(position).getProjectList().size());
 
         if (!mEnvList.get(position).getCoverUri().isEmpty()) {

@@ -61,7 +61,16 @@ public class ProjectsListViewAdapter extends BaseAdapter {
         ImageView imageProView = (ImageView) rowProjView.findViewById(R.id.proIcon);
 
         textProView.setText(mProjectList.get(position).getName());
-        textDescView.setText(mProjectList.get(position).getContent());
+
+        String descview;
+        if(mProjectList.get(position).getContent().length()>140) {
+            descview = mProjectList.get(position).getContent().substring(0,140);
+            descview += " [...]";
+        }
+        else {
+            descview = mProjectList.get(position).getContent();
+        }
+        textDescView.setText(descview);
 
         if (!mProjectList.get(position).getCoverUri().isEmpty()) {
             new AsynchDownloadImage(imageProView).execute(mProjectList.get(position).getCoverUri());

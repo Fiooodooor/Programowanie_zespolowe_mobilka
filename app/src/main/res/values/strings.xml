@@ -42,6 +42,10 @@
     <string name="descVotesCaption">Głosy: </string>
     <string name="descVoteButtonCaption">GŁOSUJ</string>
 
+    <string name="voteVoteSuccess">Zagłosowano. Dzięki!</string>
+    <string name="voteVoteError">Błąd w głosowaniu!</string>
+    <string name="voteBack">Powrót do listy projektów >></string>
+
     <string name="error_project_list">Error! Return string for project list was empty.</string>
     <string name="error_project_list_e">Error! IOException while getting project list.</string>
     <string name="error_project_details">Error! Return string for project details was empty.</string>

@@ -23,9 +23,44 @@ public class RestApiCall {
         ListEnvironmentsApi restApi = new ListEnvironmentsApi();
         return restApi.Start();
     }
-       public Result<SingleProject> ProjectDetails(String projectId) {
+    public Result<SingleProject> ProjectDetails(String projectId) {
         ProjectDetailsApi restApi = new ProjectDetailsApi(projectId);
         return restApi.Start();
+    }
+    public Result<Boolean> ProjectVote(String projectId, int voteMark) {
+        ProjectVoteApi restApi = new ProjectVoteApi(projectId, voteMark);
+        return restApi.Start();
+    }
+
+    final public class ProjectVoteApi extends AsynchEndpointComm {
+        private int voteMark;
+        ProjectVoteApi(String projectId, int voteMark) {
+            super("projects/" + projectId + "/vote/", requestMethods.POST);
+            this.voteMark = voteMark;
+        }
+        final protected void CreatePayloadJsonObject() {
+            try {
+                JSONObject tmpPayload = new JSONObject();
+                tmpPayload.put("rate", this.voteMark);
+                CreatePayloadJsonObject(tmpPayload);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        final public Result<Boolean> Start() {
+            try {
+                CreatePayloadJsonObject();
+                String voteResult = this.execute();
+                if(voteResult.isEmpty())
+                    throw new IOException(Resources.getSystem().getString(R.string.error_project_details));
+                JSONObject voteResultJson = new JSONObject(voteResult);
+                if(voteResultJson.optInt("result", 0) > 0)
+                    return new Result.Success<Boolean>(true);
+                return new Result.Success<Boolean>(false);
+            } catch(Exception e) {
+                return new Result.Error(new IOException(Resources.getSystem().getString(R.string.error_project_details_e), e));
+            }
+        }
     }
 
     final public class ProjectDetailsApi extends AsynchEndpointComm {

@@ -38,7 +38,7 @@ public class ProjectsList extends Fragment {
 
         MainCoordinatorActivity activity = (MainCoordinatorActivity) getActivity();
         if(activity != null) {
-            activity.setTitle(R.string.pro_title);
+    //        activity.setTitle(R.string.pro_title);
             projectList = activity.getGlobalEnvList().get(envNumber).getProjectList();
         }
         else {

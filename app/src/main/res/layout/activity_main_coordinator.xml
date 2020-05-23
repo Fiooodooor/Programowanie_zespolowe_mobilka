@@ -17,7 +17,7 @@
             android:id="@+id/toolbar_app_logo"
             android:src="@drawable/ic_logo"
             android:layout_width="match_parent"
-            android:layout_height="28dp"
+            android:layout_height="56dp"
             android:paddingTop="10dp"
             android:layout_marginTop="1dp"
             app:layout_constraintTop_toBottomOf="@+id/AppBarCoordToolbar"
@@ -26,17 +26,13 @@
         <TextView
             android:id="@+id/toolbar_umk_text"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="18dp"
             android:text="@string/umk_text"
-            android:textSize="8dp"
+            android:textSize="12dp"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_app_logo"
             android:gravity="center_horizontal|top"/>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/CoordToolbar"
-            android:layout_width="match_parent"
-            app:titleTextColor="@android:color/white"
-            android:layout_height="?attr/actionBarSize" />
+
 
 
     </com.google.android.material.appbar.AppBarLayout>
