@@ -1,5 +1,5 @@
 package com.votedesk.data;
-//"/api/environments/"
+
 import android.content.res.Resources;
 
 import com.votedesk.R;
@@ -12,10 +12,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RestApiCall {
-    public Result<LoggedInUser> UserLogin(String username, String password) {
+    Result<LoggedInUser> UserLogin(String username, String password) {
         UserLoginApi restApi = new UserLoginApi(username, password);
         return restApi.Start();
     }
@@ -32,13 +31,13 @@ public class RestApiCall {
         return restApi.Start();
     }
 
-    final public class ProjectVoteApi extends AsynchEndpointComm {
+    static final public class ProjectVoteApi extends AsynchEndpointComm {
         private int voteMark;
         ProjectVoteApi(String projectId, int voteMark) {
             super("projects/" + projectId + "/vote/", requestMethods.POST);
             this.voteMark = voteMark;
         }
-        final protected void CreatePayloadJsonObject() {
+        final void CreatePayloadJsonObject() {
             try {
                 JSONObject tmpPayload = new JSONObject();
                 tmpPayload.put("rate", this.voteMark);
@@ -47,7 +46,7 @@ public class RestApiCall {
                 e.printStackTrace();
             }
         }
-        final public Result<Boolean> Start() {
+        final Result<Boolean> Start() {
             try {
                 CreatePayloadJsonObject();
                 String voteResult = this.execute();
@@ -69,7 +68,7 @@ public class RestApiCall {
         }
         final protected void CreatePayloadJsonObject() { }
 
-        final public Result<SingleProject> Start() {
+        final Result<SingleProject> Start() {
             try {
                 String EnvString = this.execute();
                 if(EnvString.isEmpty())
@@ -86,8 +85,7 @@ public class RestApiCall {
         ListEnvironmentsApi() {
             super("/environments/", requestMethods.GET);
         }
-        final protected void CreatePayloadJsonObject() {
-        }
+        final protected void CreatePayloadJsonObject() { }
 
         final public Result<ArrayList<SingleEnvironment>> Start() {
             try {
@@ -101,7 +99,6 @@ public class RestApiCall {
                     JSONObject EnvSingle = EnvJsonList.getJSONObject(i);
                     SingleEnvironment node = new SingleEnvironment(EnvSingle);
                     userEnvList.add(node);
-                    //(Integer Id, String Name, String Owner, String CoverUri, List<SingleProject> ProjectList)
                 }
                 return new Result.Success<ArrayList<SingleEnvironment>>(userEnvList);
 
@@ -111,7 +108,7 @@ public class RestApiCall {
         }
     }
 
-    final public class UserLoginApi extends AsynchEndpointComm {
+    static final public class UserLoginApi extends AsynchEndpointComm {
         private String username;
         private String password;
 
@@ -120,7 +117,7 @@ public class RestApiCall {
             this.username = username;
             this.password = password;
         }
-        final protected void CreatePayloadJsonObject() {
+        final void CreatePayloadJsonObject() {
             try {
                 JSONObject tmpPayload = new JSONObject();
                 tmpPayload.put("username", username);
@@ -130,7 +127,7 @@ public class RestApiCall {
                 e.printStackTrace();
             }
         }
-        final public Result<LoggedInUser> Start() {
+        final Result Start() {
             try {
                 CreatePayloadJsonObject();
                 String loginResult = this.execute();
@@ -142,7 +139,7 @@ public class RestApiCall {
                     String tokenStr = response.getString("token");
                     AsynchEndpointComm.SetToken(tokenStr);
                     LoggedInUser activeUser = new LoggedInUser("1", username, tokenStr);
-                    return new Result.Success<LoggedInUser>(activeUser);
+                    return new Result.Success(activeUser);
                 }
             } catch(Exception e) {
                 return new Result.Error(new IOException("Error logging in", e));

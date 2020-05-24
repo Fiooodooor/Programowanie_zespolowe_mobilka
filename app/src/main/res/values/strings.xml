@@ -14,6 +14,7 @@
     <string name="login_failed">Logowanie nieudane</string>
     <string name="env_get_failed">Pobieranie listy środowisk nieudane</string>
     <string name="env_no_projects">Lista projektów jest pusta.</string>
+    <string name="env_project_pre">projektów: </string>
     <string name="env_title">1. Wybierz środowisko:</string>
     <string name="pro_title">2. Wybierz projekt:</string>
     <string name="desc_title">3. Informacje o projekcie:</string>
@@ -41,13 +42,16 @@
     <string name="descVotesTextCaption">Wynik: </string>
     <string name="descVotesCaption">Głosy: </string>
     <string name="descVoteButtonCaption">GŁOSUJ</string>
+    <string name="descVoteStart">Rozpoczęcie: </string>
+    <string name="descVoteEnd">Zakończenie: </string>
 
     <string name="voteVoteSuccess">Zagłosowano. Dzięki!</string>
     <string name="voteVoteError">Błąd w głosowaniu!</string>
-    <string name="voteBack">Powrót do listy projektów >></string>
+    <string name="voteBack">\u25C0 Wstecz </string>
 
     <string name="error_project_list">Error! Return string for project list was empty.</string>
     <string name="error_project_list_e">Error! IOException while getting project list.</string>
     <string name="error_project_details">Error! Return string for project details was empty.</string>
     <string name="error_project_details_e">Error! IOException while getting project details.</string>
+    <string name="env_project_prepend">\"projektów: \"</string>
 </resources>

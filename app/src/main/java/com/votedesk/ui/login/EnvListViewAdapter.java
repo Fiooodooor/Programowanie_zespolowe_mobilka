@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.votedesk.R;
@@ -14,7 +13,7 @@ import com.votedesk.data.AsynchDownloadImage;
 import com.votedesk.data.model.SingleEnvironment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Locale;
 
 public class EnvListViewAdapter extends BaseAdapter {
     private ArrayList<SingleEnvironment> mEnvList;
@@ -51,10 +50,11 @@ public class EnvListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         View rowView = inflater.inflate(R.layout.env_single_row, parent, false);
-        TextView textEnvView = (TextView) rowView.findViewById(R.id.envSingleRowName);
-        TextView textDescView = (TextView) rowView.findViewById(R.id.envSingleRowDesc);
-        ImageView bgEnvIcon = (ImageView) rowView.findViewById(R.id.envSingleRowIcon);
+        TextView textEnvView = rowView.findViewById(R.id.envSingleRowName);
+        TextView textDescView = rowView.findViewById(R.id.envSingleRowDesc);
+        ImageView bgEnvIcon = rowView.findViewById(R.id.envSingleRowIcon);
 
         String singleEnvName;
         if(mEnvList.get(position).getName().length()>14) {
@@ -65,7 +65,7 @@ public class EnvListViewAdapter extends BaseAdapter {
             singleEnvName = mEnvList.get(position).getName();
         }
         textEnvView.setText(singleEnvName);
-        textDescView.setText("projektów: " + mEnvList.get(position).getProjectList().size());
+        textDescView.setText(String.format(Locale.getDefault(),"%s%d", mContext.getString(R.string.env_project_prepend), mEnvList.get(position).getProjectList().size()));
 
         if (!mEnvList.get(position).getCoverUri().isEmpty()) {
             new AsynchDownloadImage(bgEnvIcon).execute(mEnvList.get(position).getCoverUri());

@@ -21,12 +21,13 @@ import com.votedesk.data.RestApiCall;
 import com.votedesk.data.Result;
 import com.votedesk.data.model.SingleProject;
 
+import java.text.DateFormat;
+import java.util.Locale;
+
 public class ProjectDetails extends Fragment {
-    private int mProjectNumber;
     private int mProjectId;
     private int mEnvNumber;
     private String descParentEnvName;
-    private SingleProject nodeProject;
 
     private ImageView descEnvironmentImage;
     private TextView descEnvironmentName;
@@ -35,8 +36,9 @@ public class ProjectDetails extends Fragment {
     private TextView descVotesValue;
     private TextView descProjectDescription;
     private SeekBar voteMark;
+    private TextView voteMarkText;
+    private TextView voteDateText;
     private Button voteButton;
-    private Button goBackButton;
 
     @Override
     public View onCreateView(
@@ -48,8 +50,18 @@ public class ProjectDetails extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mEnvNumber = getArguments().getInt("mEnvNumber");
-        mProjectNumber = getArguments().getInt("mProjectNumber");
+        int mProjectNumber = 1;
+        if (getArguments() != null) {
+            mEnvNumber = getArguments().getInt("mEnvNumber");
+            mProjectNumber = getArguments().getInt("mProjectNumber");
+        }
+        voteMark = view.findViewById(R.id.descProjectSeekBar);
+        voteMarkText = view.findViewById(R.id.descProjectSeekBarValue);
+        voteButton = view.findViewById(R.id.descVoteButtonId);
+        voteDateText = view.findViewById(R.id.descProjectSeekBarDate);
+        voteMarkText.setVisibility(View.GONE);
+        voteMark.setVisibility(View.GONE);
+        voteButton.setVisibility(View.GONE);
 
         descEnvironmentImage = view.findViewById(R.id.descEnvironmentImage);
         descEnvironmentName = view.findViewById(R.id.descEnvironmentCaption);
@@ -57,9 +69,7 @@ public class ProjectDetails extends Fragment {
         descOwnerName = view.findViewById(R.id.descOwnerCaption);
         descVotesValue = view.findViewById(R.id.descVotesValueText);
         descProjectDescription = view.findViewById(R.id.descProjectInfoCaption);
-        voteMark = view.findViewById(R.id.descProjectSeekBar);
-        voteButton = view.findViewById(R.id.descVoteButtonId);
-        goBackButton = view.findViewById(R.id.descGoBack);
+        Button goBackButton = view.findViewById(R.id.descGoBack);
 
         final ProgressBar localPBar = view.findViewById(R.id.descProgressBarLoading);
         localPBar.setVisibility(View.VISIBLE);
@@ -81,21 +91,35 @@ public class ProjectDetails extends Fragment {
                         .navigate(R.id.action_BackToProjectsList, result);
             }
         });
-        AsyncTask<Void, Void, String> aProjectDet = new ProjectDetails.DetailsNetworkOperation("" + mProjectId, localPBar);
+        AsyncTask<Void, Void, SingleProject> aProjectDet = new ProjectDetails.DetailsNetworkOperation("" + mProjectId, localPBar);
         aProjectDet.execute();
     }
 
-    public void onDetailsDataLoaded() {
+    private void onDetailsDataLoaded(SingleProject nodeProject) {
         if (!nodeProject.getCoverUri().isEmpty()) {
             new AsynchDownloadImage(descEnvironmentImage).execute(nodeProject.getCoverUri());
         }
+
         descEnvironmentName.setText(descParentEnvName);
         descProjectName.setText(nodeProject.getName());
-        descOwnerName.setText(nodeProject.getOwnerStr());;
+        descOwnerName.setText(nodeProject.getOwnerStr());
         descVotesValue.setText(nodeProject.getVotesStr());
         descProjectDescription.setText(nodeProject.getContent());
+
         if(nodeProject.isCan_vote()) {
+            voteMarkText.setVisibility(View.VISIBLE);
             voteMark.setVisibility(View.VISIBLE);
+            voteMark.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {  }
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {  }
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    String progressText = "" + (progress*10) + "%";
+                    voteMarkText.setText(progressText);
+                }
+            });
             voteButton.setVisibility(View.VISIBLE);
             voteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -109,21 +133,26 @@ public class ProjectDetails extends Fragment {
                 }
             });
         }
+        if(nodeProject.isVote_opened()) {
+            voteDateText.setText(String.format(Locale.getDefault(),"%s%s", getString(R.string.descVoteEnd), nodeProject.getVote_closing()));
+            voteMark.setEnabled(true);
+            voteButton.setEnabled(true);
+        }
         else {
-            voteMark.setVisibility(View.GONE);
-            voteButton.setVisibility(View.GONE);
+            voteDateText.setText(String.format(Locale.getDefault(),"%s%s", getString(R.string.descVoteStart), nodeProject.getVote_starting()));
+            voteMark.setEnabled(false);
+            voteButton.setEnabled(false);
         }
     }
 
-    public class DetailsNetworkOperation extends AsyncTask<Void, Void, String> {
+    public class DetailsNetworkOperation extends AsyncTask<Void, Void, SingleProject> {
         private String localProjectId;
         private ProgressBar localDetailsProgressBar;
         private RestApiCall restApiData;
-        private Result<SingleProject> lResult;
 
-        public DetailsNetworkOperation(String projectId, ProgressBar localDetailsProgressBar) {
+        DetailsNetworkOperation(String projectId, ProgressBar progressBar) {
             localProjectId = projectId;
-            this.localDetailsProgressBar = localDetailsProgressBar;
+            localDetailsProgressBar = progressBar;
             restApiData = new RestApiCall();
         }
 
@@ -132,25 +161,23 @@ public class ProjectDetails extends Fragment {
             super.onPreExecute();
         }
         @Override
-        protected String doInBackground(Void... params) {
+        protected SingleProject doInBackground(Void... params) {
             try {
                 Result<SingleProject> result = restApiData.ProjectDetails(localProjectId);
                 if (result instanceof Result.Success) {
-                    nodeProject = (((Result.Success<SingleProject>) result).getData());
+                    return (((Result.Success<SingleProject>) result).getData());
                 }
-                this.lResult = result;
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
         }
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(SingleProject result) {
             super.onPostExecute(result);
 
-            if (lResult instanceof Result.Success) {
-                nodeProject = ((Result.Success<SingleProject>) lResult).getData();
-                onDetailsDataLoaded();
+            if (result != null) {
+                onDetailsDataLoaded(result);
             }
             localDetailsProgressBar.setVisibility(View.GONE);
         }

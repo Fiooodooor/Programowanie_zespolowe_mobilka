@@ -40,7 +40,7 @@
         </action>
         <action
             android:id="@+id/action_BackToEnvironmentsList"
-            app:destination="@id/FirstFragment" />
+            app:popUpTo="@id/FirstFragment" />
         <argument
             android:name="envNumber"
             app:argType="integer"
@@ -53,7 +53,7 @@
         tools:layout="@layout/part_project_details" >
         <action
             android:id="@+id/action_BackToProjectsList"
-            app:destination="@id/SecondFragment" >
+            app:popUpTo="@id/SecondFragment" >
             <argument
                 android:name="envNumber"
                 app:argType="integer"
@@ -91,7 +91,7 @@
         tools:layout="@layout/part_vote_result" >
         <action
             android:id="@+id/action_VoteBackToProjectsList"
-            app:destination="@id/SecondFragment" >
+            app:popUpTo="@id/SecondFragment" >
             <argument
                 android:name="envNumber"
                 app:argType="integer"

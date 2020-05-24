@@ -87,7 +87,7 @@ public class EnvironmentsList extends Fragment {
         private GridView viewAdapter;
         private ProgressBar envProgressBar;
 
-        public EnvNetworkOperation(GridView theEnvView, ProgressBar envProgressBar ) {
+        EnvNetworkOperation(GridView theEnvView, ProgressBar envProgressBar) {
             viewAdapter = theEnvView;
             this.envProgressBar = envProgressBar;
             restApiData = new RestApiCall();
@@ -126,7 +126,9 @@ public class EnvironmentsList extends Fragment {
             }
             envProgressBar.setVisibility(View.GONE);
             MainCoordinatorActivity activity = (MainCoordinatorActivity) getActivity();
-            activity.setGlobalEnvList(envList);
+            if (activity != null) {
+                activity.setGlobalEnvList(envList);
+            }
         }
     }
 }
