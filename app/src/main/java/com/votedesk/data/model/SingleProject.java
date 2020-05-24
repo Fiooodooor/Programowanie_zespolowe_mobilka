@@ -29,6 +29,8 @@ public class SingleProject {
     private String vote_closing;
     private Date vote_closing_date;
 
+    public SingleProject() { this.setId(0);
+    }
     public SingleProject(JSONObject sProject)  throws JSONException {
         this(sProject, false);
     }
@@ -66,32 +68,34 @@ public class SingleProject {
     }
 
     public String getVote_starting() {
-        SimpleDateFormat formatter =  new SimpleDateFormat("dd MMMM hh:mm", Locale.getDefault());
+        SimpleDateFormat formatter =  new SimpleDateFormat(" dd.MM hh:mm", Locale.getDefault());
         return formatter.format(this.vote_starting);
     }
 
     private void setVote_starting(String vote_starting) {
         this.vote_starting = vote_starting;
         try {
-            this.vote_starting_date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.getDefault()).parse(vote_starting);
+            this.vote_starting_date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(vote_starting.substring(0, 19));
         }
         catch (Exception e) {
             e.printStackTrace();
+            this.vote_starting_date = new Date();
         }
     }
 
     public String getVote_closing() {
-        SimpleDateFormat formatter =  new SimpleDateFormat("dd MMMM hh:mm", Locale.getDefault());
+        SimpleDateFormat formatter =  new SimpleDateFormat(" dd.MM hh:mm", Locale.getDefault());
         return formatter.format(this.vote_closing_date);
     }
 
     private void setVote_closing(String vote_closing) {
         this.vote_closing = vote_closing;
         try {
-            this.vote_closing_date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.getDefault()).parse(vote_closing);
+            this.vote_closing_date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(vote_closing.substring(0, 19));
         }
         catch (Exception e) {
             e.printStackTrace();
+            this.vote_starting_date = new Date();
         }
     }
 

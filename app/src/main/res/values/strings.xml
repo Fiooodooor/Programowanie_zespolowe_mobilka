@@ -38,14 +38,16 @@
     <string name="descOwnerCaption">Właściciel: </string>
     <string name="descProjectInfoCaption">Informacje o projekcie: </string>
     <string name="descProjectInfoEdit">Dane w trakcie wczytywania. </string>
-    <string name="descVotesText"> 20% </string>
+    <string name="descVotesText"> 50% </string>
     <string name="descVotesTextCaption">Wynik: </string>
     <string name="descVotesCaption">Głosy: </string>
     <string name="descVoteButtonCaption">GŁOSUJ</string>
-    <string name="descVoteStart">Rozpoczęcie: </string>
-    <string name="descVoteEnd">Zakończenie: </string>
+    <string name="descVoteStart">Start: </string>
+    <string name="descVoteEnd">Koniec: </string>
 
     <string name="voteVoteSuccess">Zagłosowano. Dzięki!</string>
+    <string name="voteVoteDetailsSuccessYour">Twoja ocena:  </string>
+    <string name="voteVoteDetailsSuccessTotal"> Średnia:  </string>
     <string name="voteVoteError">Błąd w głosowaniu!</string>
     <string name="voteBack">\u25C0 Wstecz </string>
 
@@ -53,5 +55,5 @@
     <string name="error_project_list_e">Error! IOException while getting project list.</string>
     <string name="error_project_details">Error! Return string for project details was empty.</string>
     <string name="error_project_details_e">Error! IOException while getting project details.</string>
-    <string name="env_project_prepend">\"projektów: \"</string>
+    <string name="env_project_prepend">projektów: </string>
 </resources>

@@ -22,7 +22,6 @@ import com.votedesk.data.model.SingleEnvironment;
 import java.util.ArrayList;
 
 public class EnvironmentsList extends Fragment {
-    //private MutableLiveData<ArrayList<SingleEnvironment>> envList = new MutableLiveData<>();
     private ArrayList<SingleEnvironment> envList;
 
     @Override
@@ -37,25 +36,10 @@ public class EnvironmentsList extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-   //     MainCoordinatorActivity mActivity = (MainCoordinatorActivity) getActivity();
-     //   if(mActivity != null) {
-  //          mActivity.setTitle(R.string.env_title);
-   //     }
-
         final ProgressBar localPBar = view.findViewById(R.id.envProgressbarLoading);
         final GridView envView = view.findViewById(R.id.gridViewEnv);
         localPBar.setVisibility(View.VISIBLE);
         envList = new ArrayList<>();
-        /*envList.observe(this, new Observer<ArrayList<SingleEnvironment>>() {
-            @Override
-            public void onChanged(@Nullable ArrayList<SingleEnvironment> environmentList) {
-                if (environmentList == null) {
-                    return;
-                }
-                envProgBar.setVisibility(View.GONE);
-            }
-        });*/
-
 
         final EnvListViewAdapter envViewAdapter = new EnvListViewAdapter(view.getContext(), envList);
         envView.setAdapter(envViewAdapter);
@@ -75,7 +59,7 @@ public class EnvironmentsList extends Fragment {
                 }
                 else {
                     String emptyEnv = getString(R.string.env_no_projects);
-                    Toast.makeText(getActivity(), emptyEnv, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), emptyEnv, Toast.LENGTH_SHORT).show();
                 }
             }
         });

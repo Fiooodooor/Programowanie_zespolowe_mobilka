@@ -5,7 +5,7 @@ package com.votedesk.data;
  */
 public class Result<T> {
     // hide the private constructor to limit subclass types (Success, Error)
-    private Result() {
+    public Result() {
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Result<T> {
     }
 
     // Error sub-class
-    final static class Error extends Result {
+    public final static class Error extends Result {
         private Exception error;
 
         Error(Exception error) {

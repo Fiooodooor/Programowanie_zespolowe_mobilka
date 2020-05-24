@@ -6,19 +6,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.votedesk.R;
 import com.votedesk.data.RestApiCall;
 import com.votedesk.data.Result;
-
+import com.votedesk.data.model.SingleProject;
 
 public class VoteResult extends Fragment {
     private int envNumber;
+    private static MutableLiveData<SingleProject> projectData = new MutableLiveData<>();
 
     @Override
     public View onCreateView(
@@ -37,8 +42,25 @@ public class VoteResult extends Fragment {
             proNumber = getArguments().getInt("mProjectNumber");
             voteMark = getArguments().getInt("mVoteMark");
         }
+        final TextView voteDetailsResultText = view.findViewById(R.id.voteDetailsResultText);
+        final int finalVoteMark = voteMark;
+        projectData.observe(this, new Observer<SingleProject>() {
+            @Override
+            public void onChanged(@Nullable SingleProject projectUpdated) {
+                String stats;
+                if (projectUpdated == null) {
+                    stats = getString(R.string.voteVoteDetailsSuccessYour) + finalVoteMark;
+                    voteDetailsResultText.setText(stats);
+                }
+                else if(projectUpdated.getId() > 0) {
+                    stats = getString(R.string.voteVoteDetailsSuccessYour) + finalVoteMark + "%  ";
+                    stats += getString(R.string.voteVoteDetailsSuccessTotal) + projectUpdated.getVotesStr();
+                    voteDetailsResultText.setText(stats);
+                }
+            }
+        });
 
-        AsyncTask<Void, Void, Boolean> aVoteResult = new VoteNetworkOperation("" + proNumber, voteMark);
+        AsyncTask<Void, Void, SingleProject> aVoteResult = new VoteNetworkOperation("" + proNumber, voteMark);
         aVoteResult.execute();
 
         Button voteGoBackButton = view.findViewById(R.id.voteGoBack);
@@ -53,15 +75,17 @@ public class VoteResult extends Fragment {
         });
     }
 
-    public static class VoteNetworkOperation extends AsyncTask<Void, Void, Boolean> {
+    public static class VoteNetworkOperation extends AsyncTask<Void, Void, SingleProject> {
         private String localProjectId;
         private int localVoteMark;
         private RestApiCall restApiData;
+        private RestApiCall restApiProjectData;
 
         VoteNetworkOperation(String projectId, int theVoteMark) {
             localProjectId = projectId;
             localVoteMark = theVoteMark;
             restApiData = new RestApiCall();
+            restApiProjectData = new RestApiCall();
         }
 
         @Override
@@ -69,21 +93,27 @@ public class VoteResult extends Fragment {
             super.onPreExecute();
         }
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected SingleProject doInBackground(Void... params) {
             try {
-                Result<Boolean> result = restApiData.ProjectVote(localProjectId, localVoteMark);
-                if (result instanceof Result.Success) {
-                    return true;
+                Result<Boolean> voteResult = restApiData.ProjectVote(localProjectId, localVoteMark);
+                if (voteResult instanceof Result.Success) {
+                    Result<SingleProject> projectDet = restApiProjectData.ProjectDetails(localProjectId);
+                    if(projectDet instanceof Result.Success) {
+                        return ((Result.Success<SingleProject>) projectDet).getData();
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return false;
+            return new SingleProject();
         }
         @Override
-        protected void onPostExecute(Boolean result) {
+        protected void onPostExecute(SingleProject result) {
             super.onPostExecute(result);
-
+            if(result.getId() > 0) {
+                projectData.postValue(result);
+            }
         }
     }
 }
+
